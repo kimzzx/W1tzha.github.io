@@ -1,0 +1,1153 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>W1tzha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Devicon (Programming language icons) -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Thai', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            night: '#020617',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    #cert-viewer,
+    #cert-viewer * {
+      user-select: none;
+    }
+
+    #cert-modal-img {
+      -webkit-user-drag: none;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter','Noto Sans Thai',system-ui,sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+    }
+
+    .glass-card {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 55%),
+                  rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.18);
+      backdrop-filter: blur(22px);
+    }
+
+        /* ===== Certificate Modal Animation ===== */
+    .modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-panel {
+      transform: translateY(18px) scale(0.95);
+      opacity: 0;
+      transition:
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s ease;
+    }
+
+    .modal-backdrop.open .modal-panel {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(18px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .fade-in-up { animation: fadeInUp 0.8s ease-out both; }
+
+    .skill-pill-active {
+      background: linear-gradient(135deg, #22d3ee, #3b82f6);
+      color: #0f172a;
+      box-shadow: 0 0 18px rgba(56,189,248,0.55);
+    }
+
+    /* ==== SCROLL PARALLAX BACKGROUND ==== */
+    #scroll-parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 130%; /* ขยายให้พอเลื่อน */
+      z-index: -10;
+      pointer-events: none;
+
+      /* ใช้พื้นหลังมืดแบบเดิมที่มึงใช้ */
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(2,6,23,1));
+
+      filter: blur(0px);
+      transform: translateY(0);
+      transition: transform 0.15s ease-out;
+    }
+
+
+  </style>
+</head>
+<body class="min-h-screen bg-night text-slate-100">
+
+  <div id="scroll-parallax-bg"></div>
+  <!-- NAVBAR -->
+  <header class="fixed top-0 inset-x-0 z-30 border-b border-slate-800/70 bg-black/40 backdrop-blur-xl">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <a href="#hero" class="flex items-center gap-2">
+        <div class="h-8 w-8 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-sm font-bold shadow-lg">
+          W
+        </div>
+        <span class="text-sm font-semibold tracking-wide">W1tzha.dev</span>
+      </a>
+
+      <div class="hidden sm:flex gap-6 text-xs font-medium text-slate-300">
+        <a href="#about" class="hover:text-cyan-400 transition">About</a>
+        <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
+        <a href="#achievements" class="hover:text-cyan-400 transition">Achievements</a>
+        <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-20 pb-16">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="max-w-6xl mx-auto px-4 mt-6 mb-10 fade-in-up">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-center">
+        <div class="space-y-5">
+          <p class="text-xs uppercase tracking-[0.35em] text-cyan-400">Portfolio  •  Student Developer</p>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+            สวัสดี ผมชื่อ <span class="text-cyan-400">Witchaya Kumchaiya</span><br/>
+            นักเรียน ม.6 ที่ชอบสายโค้ดและเทคโนโลยี
+          </h1>
+          <p class="text-sm md:text-base text-slate-300 max-w-xl">
+            อายุ 18 ปี เติบโตมากับการลองเขียนโค้ดเอง ลองทำเว็บ ลองแก้ปัญหาเล็ก ๆ น้อย ๆ
+            โฟกัสไปทาง Web Dev, Script ง่าย ๆ และพื้นฐานสายวิศวะคอมในอนาคต
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="#achievements"
+               class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/40 hover:-translate-y-0.5 transition">
+              ดูโปรเจกต์
+              <span>↗</span>
+            </a>
+            <a href="#contact"
+               class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium border border-slate-700/80 bg-slate-900/70 hover:border-cyan-400 hover:text-cyan-300 transition">
+              ติดต่อผม
+            </a>
+          </div>
+
+          <div class="text-xs text-slate-400">
+            <span class="font-medium text-slate-200">วันเกิด:</span> 2 กรกฎาคม 2550
+            • <span class="font-medium text-slate-200">มีชีวิตมาแล้วประมาณ</span>
+            <span id="days-alive-hero" class="text-cyan-400 font-semibold">—</span> วัน
+          </div>
+        </div>
+
+        <!-- Hero spotlight card -->
+        <div class="relative">
+          <div class="absolute -top-10 -right-6 h-40 w-40 bg-cyan-500/20 blur-3xl rounded-full"></div>
+          <div class="glass-card rounded-3xl p-6 shadow-2xl relative">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="relative">
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-3xl font-bold">
+                  W
+                </div>
+                <div class="absolute -inset-1 rounded-2xl bg-cyan-400/25 blur-xl -z-10"></div>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.25em] text-slate-400 mb-1">Now Learning</p>
+                <h2 class="text-lg font-semibold">Web Dev &amp; Programming</h2>
+                <p class="text-xs text-slate-300">
+                  Python • Lua • HTML • CSS • C++
+                </p>
+              </div>
+            </div>
+            <div class="space-y-2 text-xs text-slate-300">
+              <p>โฟกัสไปที่การฝึกพื้นฐานให้แน่นก่อน ทั้งโครงสร้างภาษา การแก้ปัญหา และการออกแบบ UI ที่อ่านง่าย</p>
+              <p>เป้าหมายคือเอาทักษะพวกนี้ไปต่อยอดสายวิศวกรรมคอมพิวเตอร์ / IT ในระดับมหาวิทยาลัย</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="max-w-6xl mx-auto px-4 mb-12 fade-in-up">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1.2fr)]">
+        <div class="glass-card rounded-3xl p-7 shadow-xl">
+          <p class="text-xs uppercase tracking-[0.35em] text-cyan-400 mb-2">About Me</p>
+          <h2 class="text-2xl font-semibold mb-3">ทำไมถึงเลือกสายเทคโนโลยี</h2>
+          <p class="text-sm text-slate-200 leading-relaxed mb-3">
+            ผมเป็นนักเรียน ม.6 ที่ชอบทดลองสิ่งใหม่ ๆ โดยเฉพาะการเขียนโค้ดและทำเว็บ
+            เริ่มจากการแก้ปัญหาเล็ก ๆ ในชีวิตประจำวัน เช่น เว็บเช็กชื่อ เว็บรวมบทเรียนคณิต
+            ไปจนถึงไอเดียโปรเจกต์เล็ก ๆ ที่อยากเอาไปต่อยอดเป็นผลงานช่วงเข้ามหาลัย
+          </p>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            สไตล์ของผมคือเรียนรู้จากการลงมือทำ ไม่กลัวลองผิดลองถูก ขัดเกลาทักษะไปเรื่อย ๆ
+            และโฟกัสที่ “พื้นฐานแน่น” ก่อนจะกระโดดไปเรื่องยาก ๆ อย่าง Framework หรือ Library ต่าง ๆ
+          </p>
+        </div>
+
+        <div class="glass-card rounded-3xl p-7 shadow-xl">
+          <p class="text-xs uppercase tracking-[0.35em] text-cyan-400 mb-2">Timeline</p>
+          <h3 class="text-lg font-semibold mb-4">เส้นทางเล็ก ๆ ของ Witchaya</h3>
+          <ul class="space-y-4 text-sm text-slate-200">
+            <li class="flex gap-3">
+              <div class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></div>
+              <div>
+                <p class="font-medium">เริ่มสนใจการเขียนโค้ด</p>
+                <p class="text-xs text-slate-400">ลองเล่น Python, Lua และภาษาง่าย ๆ จากคลิป/บทความออนไลน์</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <div class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></div>
+              <div>
+                <p class="font-medium">เริ่มทำเว็บแบบง่าย ๆ</p>
+                <p class="text-xs text-slate-400">ใช้ HTML + CSS ลองทำหน้าเว็บเช็กชื่อ / เว็บรวมบทเรียน / หน้าโปรไฟล์ตัวเอง</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <div class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></div>
+              <div>
+                <p class="font-medium">โฟกัสที่พื้นฐาน</p>
+                <p class="text-xs text-slate-400">ฝึกโครงสร้างภาษา การคิดเชิงตรรกะ และออกแบบ UI พื้นฐานให้ใช้งานง่าย</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <div class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></div>
+              <div>
+                <p class="font-medium">เตรียมตัวต่อมหาลัยสายวิศวะ/ไอที</p>
+                <p class="text-xs text-slate-400">ใช้โปรเจกต์และสกิลพวกนี้เป็นฐานในการต่อยอดสายเทคโนโลยีในอนาคต</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS (ของเดิมที่อัปเกรดแล้ว) -->
+    <section id="skills" class="max-w-6xl mx-auto px-4 mb-12 fade-in-up">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.5fr)] items-stretch">
+
+        <!-- LEFT: PROFILE MINI + CONTACT -->
+        <section class="glass-card rounded-3xl p-8 flex flex-col gap-6 shadow-xl">
+          <div class="flex items-start gap-5">
+            <div class="relative">
+              <div class="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg flex items-center justify-center">
+                <img 
+                  src="https://media.discordapp.net/attachments/931855545793675284/1439601782413070487/436527000_122141846732098079_6015099657815609627_n.png?ex=691b1d23&is=6919cba3&hm=b214b0e9d552f1da8e35b8fbd21956aec6172c226a8a5d3b9ee3ab5704d3f00d&=&format=webp&quality=lossless"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="absolute -inset-1 rounded-full bg-cyan-400/20 blur-xl -z-10"></div>
+            </div>
+
+            <div class="space-y-1">
+              <h1 class="text-2xl md:text-3xl font-semibold tracking-wide">
+                Witchaya Kumchaiya
+              </h1>
+              <p class="text-sm text-slate-300">
+                Student &amp; Aspiring Developer
+              </p>
+              <p class="text-sm text-slate-400">
+                เกิดวันที่ 2 กรกฎาคม 2550 • มีชีวิตมาแล้วประมาณ
+                <span id="days-alive" class="font-semibold text-cyan-400">—</span> วัน
+              </p>
+            </div>
+          </div>
+
+          <div class="h-px bg-slate-700/60 my-1"></div>
+
+        <div class="space-y-2 text-sm">
+            <h2 class="text-slate-200 font-medium">ติดต่อ</h2>
+            <div class="grid gap-2 sm:grid-cols-2">
+                <a href="https://www.instagram.com/aqk2az/"
+                    target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-2 text-slate-300 hover:text-cyan-300 transition">
+                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-orange-400 text-xs font-semibold">IG</span>
+                    <span>aqk2az</span>
+                </a>
+
+                <a href="https://www.facebook.com/witchaya.kumchaiya.2025/"
+                    target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-2 text-slate-300 hover:text-cyan-300 transition">
+                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-xs font-semibold">f</span>
+                    <span>Witchaya Kumchaiya</span>
+                </a>
+
+                <a href="tel:0806625006"
+                    class="flex items-center gap-2 text-slate-300 hover:text-cyan-300 transition">
+                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-semibold">☎</span>
+                    <span>080-662-5006</span>
+                </a>
+
+                <a href="mailto:wichyakhumchayya@gmail.com"
+                    class="flex items-center gap-2 text-slate-300 hover:text-cyan-300 transition">
+                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-xs font-semibold">@</span>
+                    <span class="truncate">wichyakhumchayya@gmail.com</span>
+                </a>
+            </div>
+        </div>
+
+          <div class="mt-auto pt-4 text-xs text-slate-500">
+            พอร์ตนี้ออกแบบมาในสไตล์มินิมอล-ดาร์ก เน้นงานสายโค้ดและเทคโนโลยี
+          </div>
+        </section>
+
+        <!-- RIGHT: TECHNICAL SKILLS UI -->
+        <section class="glass-card rounded-3xl p-8 shadow-xl overflow-hidden">
+          <header class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.35em] text-cyan-400 mb-1">
+                Technical Skills
+              </p>
+              <h2 class="text-2xl md:text-3xl font-semibold">
+                ทักษะและความเชี่ยวชาญทางเทคนิค
+              </h2>
+            </div>
+          </header>
+
+          <div class="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.3fr)]">
+            <!-- Skill buttons -->
+            <div class="space-y-3">
+              <p class="text-xs uppercase tracking-[0.24em] text-slate-400">
+                เลือกสกิล
+              </p>
+              <div class="flex flex-wrap gap-3">
+          <!-- Python -->
+          <button class="skill-pill-active skill-pill inline-flex items-center gap-2 rounded-full px-4 py-2 bg-slate-900/70 text-sm font-medium text-slate-100 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+                  data-skill="python">
+            <span class="flex items-center justify-center w-5 h-5">
+              <i class="devicon-python-plain colored text-[20px]"></i>
+            </span>
+            Python
+            <span class="text-xs text-slate-900/80 bg-slate-100/70 px-1.5 rounded-full ml-1">50%</span>
+          </button>
+
+          <!-- Lua -->
+          <button class="skill-pill inline-flex items-center gap-2 rounded-full px-4 py-2 bg-slate-900/60 text-sm font-medium text-slate-200 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:bg-slate-800/90"
+                  data-skill="lua">
+            <span class="flex items-center justify-center w-5 h-5">
+              <i class="devicon-lua-plain colored text-[20px]"></i>
+            </span>
+            Lua
+            <span class="text-xs text-slate-300/90 bg-slate-800/80 px-1.5 rounded-full ml-1">30%</span>
+          </button>
+
+          <!-- HTML -->
+          <button class="skill-pill inline-flex items-center gap-2 rounded-full px-4 py-2 bg-slate-900/60 text-sm font-medium text-slate-200 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:bg-slate-800/90"
+                  data-skill="html">
+            <span class="flex items-center justify-center w-5 h-5">
+              <i class="devicon-html5-plain colored text-[20px]"></i>
+            </span>
+            HTML
+            <span class="text-xs text-slate-300/90 bg-slate-800/80 px-1.5 rounded-full ml-1">60%</span>
+          </button>
+
+          <!-- CSS -->
+          <button class="skill-pill inline-flex items-center gap-2 rounded-full px-4 py-2 bg-slate-900/60 text-sm font-medium text-slate-200 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:bg-slate-800/90"
+                  data-skill="css">
+            <span class="flex items-center justify-center w-5 h-5">
+              <i class="devicon-css3-plain colored text-[20px]"></i>
+            </span>
+            CSS
+            <span class="text-xs text-slate-300/90 bg-slate-800/80 px-1.5 rounded-full ml-1">60%</span>
+          </button>
+
+          <!-- C++ -->
+          <button class="skill-pill inline-flex items-center gap-2 rounded-full px-4 py-2 bg-slate-900/60 text-sm font-medium text-slate-200 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:bg-slate-800/90"
+                  data-skill="cpp">
+            <span class="flex items-center justify-center w-5 h-5">
+              <i class="devicon-cplusplus-plain colored text-[20px]"></i>
+            </span>
+            C++
+            <span class="text-xs text-slate-300/90 bg-slate-800/80 px-1.5 rounded-full ml-1">20%</span>
+          </button>
+        </div>
+
+
+              <p class="text-xs text-slate-400 leading-relaxed">
+                ค่าที่แสดงเป็นการประเมินตัวเองในช่วง ม.ปลาย และกำลังพัฒนาขึ้นเรื่อย ๆ
+              </p>
+            </div>
+
+            <!-- Skill detail -->
+            <div class="relative">
+              <div class="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-cyan-500/10 blur-3xl"></div>
+              <div class="relative rounded-2xl bg-slate-950/40 border border-slate-700/60 p-6 shadow-inner h-full flex flex-col gap-4">
+
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg">
+                <span id="skill-icon" class="flex items-center justify-center text-xl leading-none"></span>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Current Skill</p>
+                <h3 id="skill-name" class="text-xl font-semibold">Python</h3>
+              </div>
+            </div>
+
+                <div class="space-y-2 mt-2">
+                  <div class="flex items-baseline justify-between text-xs text-slate-400">
+                    <div class="flex gap-3">
+                      <span>มือใหม่</span>
+                      <span>ปานกลาง</span>
+                      <span>เชี่ยวชาญ</span>
+                    </div>
+                    <span id="skill-percent-text" class="text-cyan-400 font-semibold">
+                      50%
+                    </span>
+                  </div>
+                  <div class="w-full h-2 rounded-full bg-slate-800/90 overflow-hidden">
+                    <div id="skill-bar"
+                        class="h-full rounded-full transition-all duration-700"
+                        style="width: 0%;">
+                    </div>
+                  </div>
+                </div>
+
+                <p id="skill-description" class="text-sm text-slate-200 leading-relaxed mt-2">
+                  มีพื้นฐาน Python สามารถเขียนสคริปต์ง่าย ๆ แก้ปัญหา การคำนวณ และงานอัตโนมัติ
+                  รู้จักตัวแปร เงื่อนไข ลูป ฟังก์ชัน และการทำงานกับข้อมูลเบื้องต้น
+                </p>
+
+                <div class="mt-auto pt-2 text-[11px] text-slate-500">
+                  * แถบสกิลและคำอธิบายนี้จะพัฒนาไปพร้อมกับประสบการณ์การเขียนโค้ดของ Witchaya
+                </div>
+              </div>
+            </div>
+
+        </section>
+      </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="max-w-6xl mx-auto px-4 mb-16 fade-in-up">
+      <div class="glass-card rounded-3xl p-7 shadow-xl relative overflow-hidden">
+
+        <p class="text-xs uppercase tracking-[0.35em] text-cyan-400 mb-2">Education</p>
+        <h2 class="text-2xl font-semibold mb-8">ประวัติการศึกษา</h2>
+
+        <!-- TIMELINE -->
+        <div class="mt-4 border-l border-slate-700/60 pl-6 space-y-6">
+
+          <!-- 1. ประถม -->
+          <div class="edu-item flex items-start gap-3 opacity-0 translate-y-4 transition-all duration-700">
+            <div class="mt-1 h-8 w-8 rounded-full bg-slate-950 border border-cyan-400 flex items-center justify-center shadow-lg">
+              <img
+                src="https://media.discordapp.net/attachments/931855545793675284/1439596227044966460/412263077_880414627417600_734201.png?ex=691b17f6&is=6919c676&hm=8997452515b786f60ef196d1106786d70f0ce7910ebd0350f10adf6e217138fa&=&format=webp&quality=lossless"
+                class="h-6 w-6 object-contain"
+                alt="Sakolwittaya Logo"
+              />
+            </div>
+            <div>
+              <h3 class="text-base md:text-lg font-semibold text-slate-100">
+                ระดับประถมศึกษา
+              </h3>
+              <p class="text-slate-300 text-sm">
+                โรงเรียนสกลวิทยา
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. มัธยมต้น -->
+          <div class="edu-item flex items-start gap-3 opacity-0 translate-y-4 transition-all duration-700 delay-150">
+            <div class="mt-1 h-8 w-8 rounded-full bg-slate-950 border border-cyan-400 flex items-center justify-center shadow-lg">
+              <img
+                src="https://media.discordapp.net/attachments/931855545793675284/1439596227044966460/412263077_880414627417600_734201.png?ex=691b17f6&is=6919c676&hm=8997452515b786f60ef196d1106786d70f0ce7910ebd0350f10adf6e217138fa&=&format=webp&quality=lossless"
+                class="h-6 w-6 object-contain"
+                alt="Sakolwittaya Logo"
+              />
+            </div>
+            <div>
+              <h3 class="text-base md:text-lg font-semibold text-slate-100">
+                มัธยมศึกษาตอนต้น
+              </h3>
+              <p class="text-slate-300 text-sm">
+                โรงเรียนสกลวิทยา
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. มัธยมปลาย -->
+          <div class="edu-item flex items-start gap-3 opacity-0 translate-y-4 transition-all duration-700 delay-300">
+            <div class="mt-1 h-8 w-8 rounded-full bg-slate-950 border border-cyan-400 flex items-center justify-center shadow-lg">
+              <img
+                src="https://media.discordapp.net/attachments/931855545793675284/1439596227044966460/412263077_880414627417600_734201.png?ex=691b17f6&is=6919c676&hm=8997452515b786f60ef196d1106786d70f0ce7910ebd0350f10adf6e217138fa&=&format=webp&quality=lossless"
+                class="h-6 w-6 object-contain"
+                alt="Sakolwittaya Logo"
+              />
+            </div>
+            <div>
+              <h3 class="text-base md:text-lg font-semibold text-slate-100">
+                มัธยมศึกษาตอนปลาย
+              </h3>
+              <p class="text-slate-300 text-sm">
+                โรงเรียนสกลวิทยา
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<!-- ACHIEVEMENTS SECTION -->
+<section id="achievements" class="max-w-6xl mx-auto px-4 mb-12 fade-in-up">
+  <div class="flex items-end justify-between mb-5">
+    <div>
+      <p class="text-xs uppercase tracking-[0.35em] text-cyan-400 mb-1">Achievements</p>
+      <h2 class="text-2xl md:text-3xl font-semibold">รางวัล &amp; กิจกรรมที่เข้าร่วม</h2>
+    </div>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+
+    <!-- Achievement 1 -->
+    <article class="glass-card rounded-2xl p-6 shadow-xl flex flex-col gap-3">
+      <div class="flex items-center justify-between gap-3">
+        <h3 class="text-lg font-semibold">Maker Robotics Challenge 2025</h3>
+        <span class="text-[10px] px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700 text-slate-300">
+          Robotics
+        </span>
+      </div>
+      <p class="text-xs text-slate-400">30 พฤษภาคม - 2 มิถุนายน 2024 • ระดับระดับนานาชาติ</p>
+      <p class="text-sm text-slate-200">
+        ได้เข้าแข่งขันรายการ MRC 2025 ในประเภท Combat robot 1.5kg ระดับนานาชาติ ผลการแข่งได้ลำดับ รองชนะเลิศอันดับที่ 4
+        ในการแข่งขันครั้งนี้ได้ประสบการณ์หลายอย่างไม่ว่าจะเป็น การแก้ปัญหาเฉพาะหน้า และ การทำงานเป็นทีม ได้เรียนรู้ข้อผิดพลาดหลายอย่าง เช่น เรื่องน้ำหนักของหุ่นยนต์ การบังคับ
+      </p>
+      <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">C++</span>
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Arduino</span>
+      </div>
+      <div class="mt-3">
+        <button
+          class="open-cert inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border border-slate-600 bg-slate-900/70 hover:border-cyan-400 hover:text-cyan-300 transition select-none"
+          data-title="Maker Robotics Challenge 2025"
+          data-desc="ได้เข้าแข่งขันรายการ MRC 2025 ในประเภท Combat robot 1.5kg ระดับนานาชาติ ได้รองชนะเลิศอันดับที่ 4 ได้เรียนรู้ทั้งการแก้ปัญหาเฉพาะหน้า การทำงานเป็นทีม การจัดการน้ำหนักหุ่น และการบังคับหุ่นยนต์ในสนามจริง"
+          draggable="false"
+          data-images="https://media.discordapp.net/attachments/931855545793675284/1439606657586958451/9622412a-acbd-4394-bc0a-4b9fb4cf9432.jpg?ex=691b21ad&is=6919d02d&hm=8c025be0122432ed572e1903c8f00c384b12dcf70a38a36b2e081e5b9f968ec0&=&format=webp,
+                      https://media.discordapp.net/attachments/931855545793675284/1439609711572943041/277.png?ex=691b2485&is=6919d305&hm=00f6a9b440587e34666f76abf016798069b43227103707b55d96b0b48beaf47e&=&format=webp&quality=lossless,
+                      https://media.discordapp.net/attachments/931855545793675284/1439615084782424116/image.png?ex=691b2986&is=6919d806&hm=22de45aafe69136b05f8d5781e95b40ae8aaa8a9e13b55211b1bf19a9e026b59&=&format=webp&quality=lossless">
+          👁 View Details
+        </button>
+      </div>
+    </article>
+
+    <!-- Achievement 2 -->
+    <article class="glass-card rounded-2xl p-6 shadow-xl flex flex-col gap-3">
+      <div class="flex items-center justify-between gap-3">
+        <h3 class="text-lg font-semibold">Thailand Cyber Top Talent 2025</h3>
+        <span class="text-[10px] px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700 text-slate-300">
+          Programming
+        </span>
+      </div>
+      <p class="text-xs text-slate-400">30 สิงหาคม 2025 • Online Contest</p>
+      <p class="text-sm text-slate-200">
+        ได้เข้าแข่งขันรายการ Thailand Cyber Top Talent 2025 ในรอบคัดเลือกระดับประเทศ 
+        รุ่น Junior ได้ลำดับที่ 236 จาก 518 ทีม ในการแข่งขันครั้งนี้ผมได้รับประสบการณ์หลายอย่างมาก ไม่ว่าจะเป็นการหาช่องโหว่ของระบบ ความรู้ใน logic การตีความของโจทย์ การทำงานเป็นทีม ทำให้ในการแข่งขันครั้งนี้ผมได้ความรู้ที่สามารถนำไปต่อยอดในสายงานของได้ 
+        Cyber Security ได้ในอนาคต
+      </p>
+      <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">CyberSecurity</span>
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Problem Solving</span>
+      </div>
+      <div class="mt-3">
+        <button
+          class="open-cert inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border border-slate-600 bg-slate-900/70 hover:border-cyan-400 hover:text-cyan-300 transition select-none"
+          data-title="Thailand Cyber Top Talent 2025"
+          data-desc="ได้เข้าแข่งขันรายการ Thailand Cyber Top Talent 2025 ในรอบคัดเลือกระดับประเทศ 
+        รุ่น Junior ได้ลำดับที่ 236 จาก 518 ทีม ในการแข่งขันครั้งนี้ผมได้รับประสบการณ์หลายอย่างมาก ไม่ว่าจะเป็นการหาช่องโหว่ของระบบ ความรู้ใน logic การตีความของโจทย์ การทำงานเป็นทีม"
+          data-images="https://media.discordapp.net/attachments/931855545793675284/1439609278829690890/Part2JuniorTopTalentPage159.Pdf_-_1.jpg?ex=691b241e&is=6919d29e&hm=4eebe35155df6807d5bf3cbf981495a59cb3f301108729d23a4db5bf2d1e7dee&=&format=webp&width=684&height=967,
+                      https://media.discordapp.net/attachments/931855545793675284/1439621693059371160/2.png?ex=691b2fae&is=6919de2e&hm=69d62a9f9446e811c4b38261c97f15853ea1639ce6c1b2c2c0d0d77bc0b16758&=&format=webp&quality=lossless,
+                      https://media.discordapp.net/attachments/931855545793675284/1439621724940533882/1.png?ex=691b2fb6&is=6919de36&hm=9e4211826e9c6f3fd16d2da1eec03d53e883cbfc8f61e1a0498330b311f44e4e&=&format=webp&quality=lossless">
+          👁 View Details
+        </button>
+      </div>
+    </article>
+
+    <!-- Achievement 3 -->
+    <article class="glass-card rounded-2xl p-6 shadow-xl flex flex-col gap-3">
+      <div class="flex items-center justify-between gap-3">
+        <h3 class="text-lg font-semibold">Fun Fundamentals of Python Programming</h3>
+        <span class="text-[10px] px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700 text-slate-300">
+          Camp
+        </span>
+      </div>
+      <p class="text-xs text-slate-400">21,28 มิถุนายน 5,19 กรกฎาคม</p>
+      <p class="text-sm text-slate-200">
+        ได้เข้าร่วมอบรบในกิจกรรม Fun Fundamentals of Python Programming ณ 
+        คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล เป็นค่ายที่ทำให้ผมได้เรียนรู้ในการใช้ภาษา python เบื้องต้น และ สามารถนำไปปรับใช้ต่อได้ ไม่ว่าจะเป็น การสร้าง AI การนำไปปรับใช้ใน Data Science
+      </p>
+      <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Python</span>
+      </div>
+      <div class="mt-3">
+        <button
+          class="open-cert inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border border-slate-600 bg-slate-900/70 hover:border-cyan-400 hover:text-cyan-300 transition select-none"
+          data-title="Fun Fundamentals of Python Programming"
+          data-desc="ได้เข้าร่วมอบรบในกิจกรรม Fun Fundamentals of Python Programming ณ 
+        คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล เป็นค่ายที่ทำให้ผมได้เรียนรู้ในการใช้ภาษา python เบื้องต้น"
+          data-images="https://media.discordapp.net/attachments/931855545793675284/1439617472151163054/Untitled_3.jpg?ex=691b2bc0&is=6919da40&hm=1822ab96eac907a442af40e19311369d9b21291052c514715f1a78dd3d803b5a&=&format=webp&width=1312&height=967,
+                      https://media.discordapp.net/attachments/931855545793675284/1439617324289360054/image.png?ex=691b2b9c&is=6919da1c&hm=cd9a402f8f86f652688246ecd960c3c018998c64fabb5357ce49a351bf810f71&=&format=webp&quality=lossless">
+          👁 View Details
+        </button>
+      </div>
+    </article>
+
+    <!-- Achievement 4 -->
+    <article class="glass-card rounded-2xl p-6 shadow-xl flex flex-col gap-3">
+      <div class="flex items-center justify-between gap-3">
+        <h3 class="text-lg font-semibold">BangMod Hackathon 2025</h3>
+        <span class="text-[10px] px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700 text-slate-300">
+          Programming</span>
+      </div>
+      <p class="text-xs text-slate-400">21,28 มิถุนายน 5,19 กรกฎาคม</p>
+      <p class="text-sm text-slate-200">
+        ได้เข้าร่วมแข่งขัน BangMod Hackathon ระดับประเทศรอบคัดเลือกครั้งที่1 ในการแข่งขันครั้งนี้ทำให้ผมได้ ประสบการณ์ในการเขียนภาษา C/C++ และยังได้ทักษะการวิเคราะห์ปัญหา การทำงานเป็นทีม
+      </p>
+      <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Problem Solvin</span>
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Programming</span>
+        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">C/C++</span>
+      </div>
+      <div class="mt-3">
+        <button
+          class="open-cert inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border border-slate-600 bg-slate-900/70 hover:border-cyan-400 hover:text-cyan-300 transition select-none"
+          data-title="BangMod Hackathon 2025"
+          data-desc="ได้เข้าร่วมแข่งขัน BangMod Hackathon ระดับประเทศรอบคัดเลือกครั้งที่1 ในการแข่งขันครั้งนี้ทำให้ผมได้ ประสบการณ์ในการเขียนภาษา C/C++ และยังได้ทักษะการวิเคราะห์ปัญหา การทำงานเป็นทีม"
+          data-images="https://media.discordapp.net/attachments/931855545793675284/1439642203386544210/3.jpg?ex=691b42c8&is=6919f148&hm=0a93a11c5e9d777adadff6f1dbc66fffbf5e7ae7fd051426f881ac1f810b3493&=&format=webp&width=726&height=968,
+                      https://media.discordapp.net/attachments/931855545793675284/1439642184411254784/2.jpg?ex=691b42c4&is=6919f144&hm=a2e6bbc2888c1fef87bed611edc0be70714e7ee49b7265bc15967aec1e32c5ea&=&format=webp&width=726&height=968,
+                      https://media.discordapp.net/attachments/931855545793675284/1439642226333319198/image.png?ex=691b42ce&is=6919f14e&hm=680dd1b3c595206df09b307f3b92da4aedbe7212fed4bddc3f45061b393b56a3&=&format=webp&quality=lossless">
+          👁 View Details
+        </button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 mb-6 fade-in-up">
+      <div class="glass-card rounded-3xl p-7 shadow-xl">
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.35em] text-cyan-400 mb-1">Contact</p>
+            <h2 class="text-2xl font-semibold mb-2">มาคุยกันได้</h2>
+            <p class="text-sm text-slate-200 max-w-md">
+              ถ้ามีคำแนะนำ โปรเจกต์ให้ลองทำ หรือโอกาสให้ฝึกงาน/ช่วยงานเล็ก ๆ น้อย ๆ
+              สามารถทักมาหาผมได้เลย ยินดีเรียนรู้จากของจริงเสมอ
+            </p>
+          </div>
+
+        <div class="space-y-2 text-sm text-slate-200">
+            <a href="mailto:wichyakhumchayya@gmail.com"
+                class="flex items-center gap-2 hover:text-cyan-300 transition">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-xs font-semibold">@</span>
+                <span>wichyakhumchayya@gmail.com</span>
+            </a>
+
+            <a href="tel:0806625006"
+                class="flex items-center gap-2 hover:text-cyan-300 transition">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-xs font-semibold">☎</span>
+                <span>080-662-5006</span>
+            </a>
+
+            <a href="https://www.instagram.com/aqk2az/"
+                target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 hover:text-cyan-300 transition">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-orange-400 text-xs font-semibold">IG</span>
+                <span>aqk2az</span>
+            </a>
+
+            <a href="https://www.facebook.com/witchaya.kumchaiya.2025/"
+                target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 hover:text-cyan-300 transition">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-xs font-semibold">f</span>
+                <span>Witchaya Kumchaiya</span>
+            </a>
+        </div>
+        </div>
+      </div>
+
+      <p class="text-[10px] text-center text-slate-500 mt-4">
+        © <span id="year"></span> Witchaya Kumchaiya. Built with HTML, Tailwind CSS, and a lot of curiosity.
+      </p>
+    </section>
+    <!-- CERTIFICATE MODAL -->
+    <div id="cert-modal"
+        class="modal-backdrop fixed inset-0 z-40 flex items-center justify-center bg-black/80 px-4">
+      <div class="modal-panel relative max-w-3xl w-full glass-card rounded-3xl p-4 md:p-6 shadow-2xl">
+        <!-- ปุ่มปิด -->
+        <button id="cert-modal-close"
+                class="absolute top-3 right-3 text-slate-400 hover:text-slate-100 text-xl leading-none">
+          ✕
+        </button>
+
+        <div class="flex flex-col gap-3 md:gap-4">
+          <!-- หัวข้อ + ตัวนับ -->
+          <div class="flex items-center justify-between gap-2">
+            <h3 id="cert-modal-title" class="text-sm md:text-base font-semibold text-slate-100">
+              Certificate
+            </h3>
+            <p id="cert-modal-counter" class="text-[11px] text-slate-400"></p>
+          </div>
+
+          <!-- คำอธิบาย -->
+          <p id="cert-modal-desc" class="text-xs md:text-sm text-slate-300 leading-relaxed"></p>
+
+          <!-- รูปใหญ่ + ปุ่มเลื่อน -->
+          <div id="cert-viewer"
+          class="relative max-h-[60vh] overflow-hidden rounded-2xl bg-black/40 flex items-center justify-center cursor-default">
+        <!-- ปุ่มก่อนหน้า / ถัดไป ตามเดิม -->
+
+        <img id="cert-modal-img"
+            src=""
+            alt="certificate"
+            draggable="false"
+            class="max-h-[60vh] w-auto object-contain rounded-2xl transform select-none" />
+
+        <!-- ปุ่มก่อนหน้า / ถัดไป -->
+      </div>
+          
+          <!-- แกลเลอรีรูปทั้งหมด (thumbnail) -->
+          <div id="cert-thumbs" class="mt-1 flex gap-2 overflow-x-auto pb-1"></div>
+        </div>
+      </div>
+    </div>
+</main>
+
+  <!-- JS -->
+  <script>
+    // คำนวณจำนวนวันที่มีชีวิตอยู่ (เกิด 2 กรกฎาคม 2007)
+    (function calcDaysAlive() {
+      const birthDate = new Date(2007, 6, 2); // เดือนเริ่มที่ 0 → 6 = กรกฎาคม
+      const today = new Date();
+      const diffTime = today - birthDate;
+      const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const s1 = document.getElementById('days-alive');
+      const s2 = document.getElementById('days-alive-hero');
+      if (s1) s1.textContent = days.toLocaleString('th-TH');
+      if (s2) s2.textContent = days.toLocaleString('th-TH');
+    })();
+
+    // Year footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ข้อมูลสกิล
+    const skills = {
+      python: {
+        name: 'Python',
+        icon: '<i class="devicon-python-plain text-[22px] leading-none text-slate-100"></i>',
+        level: 50,
+        description: 'มีพื้นฐาน Python สามารถเขียนสคริปต์ง่าย ๆ แก้โจทย์คณิต คำนวณเกรด ทำงานอัตโนมัติ และเริ่มลองเขียนโปรเจกต์เล็ก ๆ ได้',
+        gradient: 'linear-gradient(90deg, #3776AB, #FFD43B)',
+        shadow: '0 0 18px rgba(55,118,171,0.65)'
+      },
+      lua: {
+        name: 'Lua',
+        icon: '<i class="devicon-lua-plain text-[22px] leading-none text-slate-100"></i>',
+        level: 30,
+        description: 'เริ่มต้นใช้ Lua สำหรับเกมและสคริปต์บางอย่าง รู้โครงสร้างภาษา และสามารถแก้ไข/ดัดแปลงโค้ดที่มีอยู่ได้',
+        gradient: 'linear-gradient(90deg, #000080, #1D4ED8)',
+        shadow: '0 0 18px rgba(37,99,235,0.65)'
+      },
+      html: {
+        name: 'HTML',
+        icon: '<i class="devicon-html5-plain text-[22px] leading-none text-slate-100"></i>',
+        level: 60,
+        description: 'สามารถเขียนโครงสร้างหน้าเว็บด้วย HTML ได้เอง จัดเลย์เอาต์ ใส่ section ต่าง ๆ และเตรียมพร้อมสำหรับต่อยอดกับ CSS/JS',
+        gradient: 'linear-gradient(90deg, #E34F26, #F97316)',
+        shadow: '0 0 18px rgba(227,79,38,0.65)'
+      },
+      css: {
+        name: 'CSS',
+        icon: '<i class="devicon-css3-plain text-[22px] leading-none text-slate-100"></i>',
+        level: 60,
+        description: 'จัด layout ปรับสี ฟอนต์ ระยะห่าง ทำปุ่มสวย ๆ และใช้ flexbox / grid เบื้องต้น รวมถึงลองทำ UI มินิมอลดาร์กสไตล์สายเทค',
+        gradient: 'linear-gradient(90deg, #1572B6, #38BDF8)',
+        shadow: '0 0 18px rgba(21,114,182,0.65)'
+      },
+      cpp: {
+        name: 'C++',
+        icon: '<i class="devicon-cplusplus-plain text-[22px] leading-none text-slate-100"></i>',
+        level: 20,
+        description: 'เริ่มต้นเรียน C++ เพื่อใช้สอบแข่งขัน/พื้นฐานวิศวกรรม มีความเข้าใจตัวแปร ฟังก์ชัน และโครงสร้างควบคุมพื้นฐาน',
+        gradient: 'linear-gradient(90deg, #00599C, #60A5FA)',
+        shadow: '0 0 18px rgba(0,89,156,0.65)'
+      }
+    };
+
+
+
+    const barEl = document.getElementById('skill-bar');
+    const nameEl = document.getElementById('skill-name');
+    const iconEl = document.getElementById('skill-icon');
+    const descEl = document.getElementById('skill-description');
+    const percentTextEl = document.getElementById('skill-percent-text');
+
+    function setSkill(key) {
+      const skill = skills[key];
+      if (!skill) return;
+
+      nameEl.textContent = skill.name;
+      iconEl.innerHTML = skill.icon; // << ใช้ innerHTML
+      descEl.textContent = skill.description;
+      percentTextEl.textContent = skill.level + '%';
+
+      // progress bar
+      barEl.style.width = '0%';
+      barEl.style.background = skill.gradient;
+      barEl.style.boxShadow = skill.shadow || '0 0 18px rgba(56,189,248,0.65)';
+      void barEl.offsetWidth;
+      barEl.style.width = skill.level + '%';
+    }
+
+    document.querySelectorAll('.skill-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.skill;
+        setSkill(key);
+        document.querySelectorAll('.skill-pill').forEach(b => b.classList.remove('skill-pill-active'));
+        btn.classList.add('skill-pill-active');
+      });
+    });
+
+    window.addEventListener('load', () => {
+      setSkill('python');
+    });
+// ===== Certificate Modal (โหมด A + B) =====
+const certModal = document.getElementById('cert-modal');
+const certModalImg = document.getElementById('cert-modal-img');
+const certModalTitle = document.getElementById('cert-modal-title');
+const certModalDesc = document.getElementById('cert-modal-desc');
+const certModalClose = document.getElementById('cert-modal-close');
+const certPrev = document.getElementById('cert-prev');
+const certNext = document.getElementById('cert-next');
+const certCounter = document.getElementById('cert-modal-counter');
+const certThumbs = document.getElementById('cert-thumbs');
+
+let certImages = [];
+let certIndex = 0;
+
+function updateCertImage() {
+  if (!certImages.length) return;
+
+  // อัปเดตรูปใหญ่
+  certModalImg.src = certImages[certIndex];
+
+  // ตัวนับ (1 / N)
+  if (certCounter) {
+    certCounter.textContent = `${certIndex + 1} / ${certImages.length}`;
+  }
+
+  // ซ่อน/โชว์ปุ่มเลื่อน ถ้ามีแค่รูปเดียว
+  const showNav = certImages.length > 1;
+  if (certPrev) certPrev.style.display = showNav ? 'flex' : 'none';
+  if (certNext) certNext.style.display = showNav ? 'flex' : 'none';
+
+  // ไฮไลต์ thumbnail ที่เลือก
+  if (!certThumbs) return;
+  [...certThumbs.children].forEach((thumb, idx) => {
+    if (idx === certIndex) {
+      thumb.classList.add('ring-2', 'ring-cyan-400');
+      thumb.classList.remove('opacity-60');
+    } else {
+      thumb.classList.remove('ring-2', 'ring-cyan-400');
+      thumb.classList.add('opacity-60');
+    }
+  });
+  // รีเซ็ตซูมทุกครั้งที่เปลี่ยนรูป
+  window.dispatchEvent(new Event("certImageChanged"));
+}
+
+function openCertModal(title, images, desc) {
+  if (!certModal) return;
+
+  certModalTitle.textContent = title || 'Certificate';
+  certModalDesc.textContent = desc || '';
+
+  certImages = images && images.length ? images : [];
+  certIndex = 0;
+
+  // สร้าง thumbnails แสดงรูปทั้งหมด
+  if (certThumbs) {
+    certThumbs.innerHTML = '';
+    certImages.forEach((url, idx) => {
+      const thumb = document.createElement('img');
+      thumb.src = url;
+      thumb.alt = `thumb-${idx + 1}`;
+      thumb.className = 'h-14 md:h-16 w-auto rounded-xl object-cover cursor-pointer bg-slate-900/80 border border-slate-700/70';
+      thumb.addEventListener('click', () => {
+        certIndex = idx;
+        updateCertImage();
+      });
+      certThumbs.appendChild(thumb);
+    });
+  }
+
+  updateCertImage();
+  certModal.classList.add('open');
+}
+
+function closeCertModal() {
+  if (!certModal) return;
+  certModal.classList.remove('open');
+  certModalImg.src = '';
+  certImages = [];
+  certIndex = 0;
+  if (certThumbs) certThumbs.innerHTML = '';
+  if (certCounter) certCounter.textContent = '';
+}
+
+// ปุ่มเปิด modal
+document.querySelectorAll('.open-cert').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const title = btn.dataset.title || '';
+    const desc = btn.dataset.desc || '';
+
+    let images = [];
+    if (btn.dataset.images) {
+      images = btn.dataset.images
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+    } else if (btn.dataset.img) {
+      // เผื่อปุ่มเก่าที่ยังใช้ data-img รูปเดียว
+      images = [btn.dataset.img];
+    }
+
+    openCertModal(title, images, desc);
+  });
+});
+
+// ปุ่มปิด
+if (certModalClose) {
+  certModalClose.addEventListener('click', closeCertModal);
+}
+
+// คลิกพื้นหลังเพื่อปิด
+if (certModal) {
+  certModal.addEventListener('click', (e) => {
+    if (e.target === certModal) {
+      closeCertModal();
+    }
+  });
+}
+
+// ปุ่มก่อนหน้า/ถัดไป
+if (certPrev) {
+  certPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!certImages.length) return;
+    certIndex = (certIndex - 1 + certImages.length) % certImages.length;
+    updateCertImage();
+  });
+}
+
+if (certNext) {
+  certNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!certImages.length) return;
+    certIndex = (certIndex + 1) % certImages.length;
+    updateCertImage();
+  });
+}
+
+// ปิดด้วยปุ่ม Esc
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeCertModal();
+  }
+});
+
+    // ===== Education Timeline Animation =====
+    const eduItems = document.querySelectorAll('.edu-item');
+
+    function animateEduItems() {
+      eduItems.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top <= window.innerHeight - 100) {
+          item.classList.remove("opacity-0", "translate-y-4");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", animateEduItems);
+    window.addEventListener("load", animateEduItems);
+
+    // =====================
+    // ZOOM + PAN WITH TRANSFORM
+    // =====================
+    (function setupCertZoom() {
+      const img = document.getElementById("cert-modal-img");
+      const viewer = document.getElementById("cert-viewer");
+      if (!img || !viewer) return;
+
+      let zoom = 1;
+      let tx = 0;
+      let ty = 0;
+
+      let isPanning = false;
+      let startX = 0;
+      let startY = 0;
+      let startTX = 0;
+      let startTY = 0;
+
+      img.style.transformOrigin = "center center";
+      img.style.transition = "transform 0.12s ease-out";
+
+      function applyTransform() {
+        img.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
+
+        if (zoom > 1) {
+          viewer.classList.add("cursor-grab");
+        } else {
+          viewer.classList.remove("cursor-grab", "cursor-grabbing");
+        }
+      }
+
+      function resetTransform() {
+        zoom = 1;
+        tx = 0;
+        ty = 0;
+        applyTransform();
+      }
+
+      // รีเซ็ตทุกครั้งที่เปลี่ยนรูป
+      window.addEventListener("certImageChanged", resetTransform);
+
+      // ซูมด้วยล้อเมาส์
+      viewer.addEventListener(
+        "wheel",
+        (e) => {
+          e.preventDefault();
+
+          const delta = e.deltaY < 0 ? 0.2 : -0.2;
+          let newZoom = zoom + delta;
+
+          // จำกัดช่วงซูม
+          newZoom = Math.min(4, Math.max(1, newZoom));
+
+          if (newZoom === zoom) return;
+
+          // ถ้าซูมออกจนเหลือ 1x → รีเซ็ตตำแหน่งให้กลับมาตรงกลาง
+          if (newZoom === 1) {
+            zoom = 1;
+            tx = 0;
+            ty = 0;
+            applyTransform();
+            return;
+          }
+
+          // กรณีอื่น ๆ แค่เปลี่ยน scale ตามปกติ
+          zoom = newZoom;
+          applyTransform();
+        },
+        { passive: false }
+      );
+
+
+      // ดับเบิลคลิก ซูมเข้า/รีเซ็ต
+      viewer.addEventListener("dblclick", (e) => {
+        e.preventDefault();
+        if (zoom === 1) {
+          zoom = 2;
+        } else {
+          zoom = 1;
+          tx = 0;
+          ty = 0;
+        }
+        applyTransform();
+      });
+
+      // เริ่มลาก
+      viewer.addEventListener("mousedown", (e) => {
+        if (zoom === 1 || e.button !== 0) return; // ต้องซูมแล้ว + คลิกซ้ายเท่านั้น
+
+        e.preventDefault(); // กัน drag รูป/ select
+
+        isPanning = true;
+        viewer.classList.remove("cursor-grab");
+        viewer.classList.add("cursor-grabbing");
+
+        startX = e.clientX;
+        startY = e.clientY;
+        startTX = tx;
+        startTY = ty;
+      });
+
+      // ลากอยู่
+      document.addEventListener("mousemove", (e) => {
+        if (!isPanning) return;
+
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+
+        tx = startTX + dx;
+        ty = startTY + dy;
+        applyTransform();
+      });
+
+      // ปล่อยเมาส์ หยุดลาก
+      document.addEventListener("mouseup", () => {
+        if (!isPanning) return;
+        isPanning = false;
+        viewer.classList.remove("cursor-grabbing");
+        if (zoom > 1) viewer.classList.add("cursor-grab");
+      });
+    })();
+
+    function setSkill(key) {
+      const skill = skills[key];
+      if (!skill) return;
+
+      nameEl.textContent = skill.name;
+      // ใช้ innerHTML เพราะ icon เป็น <i> ไม่ใช่แค่ตัวอักษร
+      iconEl.innerHTML = skill.icon;
+      descEl.textContent = skill.description;
+      percentTextEl.textContent = skill.level + '%';
+
+      // รีเซ็ต animation ความกว้าง
+      barEl.style.width = '0%';
+      // ตั้งสีตามภาษา
+      barEl.style.background = skill.gradient;
+      barEl.style.boxShadow = skill.shadow || '0 0 18px rgba(56,189,248,0.65)';
+
+      void barEl.offsetWidth; // force reflow
+      barEl.style.width = skill.level + '%';
+    }
+
+
+
+  </script>
+</body>
+</html>
