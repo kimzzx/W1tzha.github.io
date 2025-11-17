@@ -110,6 +110,52 @@
       transition: transform 0.15s ease-out;
     }
 
+    .tech-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* Colors per language */
+    .tag-cpp {
+      background: rgba(0, 89, 156, 0.25);
+      border-color: rgba(0, 89, 156, 0.45);
+      box-shadow: 0 0 8px rgba(0, 89, 156, 0.35);
+    }
+
+    .tag-python {
+      background: rgba(255, 212, 59, 0.25);
+      border-color: rgba(171, 156, 55, 0.45);
+      box-shadow: 0 0 8px rgba(217, 196, 61, 0.35);
+    }
+
+    .tag-html {
+      background: rgba(227, 79, 38, 0.25);
+      border-color: rgba(227, 79, 38, 0.45);
+      box-shadow: 0 0 8px rgba(227, 79, 38, 0.35);
+    }
+
+    .tag-css {
+      background: rgba(21, 114, 182, 0.25);
+      border-color: rgba(21, 114, 182, 0.45);
+      box-shadow: 0 0 8px rgba(21, 114, 182, 0.35);
+    }
+
+    .tag-lua {
+      background: rgba(37, 99, 235, 0.25);
+      border-color: rgba(37, 99, 235, 0.45);
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.35);
+    }
+
+    .tag-ps {
+      background: rgba(37, 235, 57, 0.25);
+      border-color: rgba(47, 235, 37, 0.45);
+      box-shadow: 0 0 8px rgba(37, 235, 47, 0.35);
+    }
 
   </style>
 </head>
@@ -342,13 +388,13 @@
               </p>
               <div class="flex flex-wrap gap-3">
           <!-- Python -->
-          <button class="skill-pill-active skill-pill inline-flex items-center gap-2 rounded-full px-4 py-2 bg-slate-900/70 text-sm font-medium text-slate-100 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+          <button class="skill-pill inline-flex items-center gap-2 rounded-full px-4 py-2 bg-slate-900/60 text-sm font-medium text-slate-200 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:bg-slate-800/90"
                   data-skill="python">
             <span class="flex items-center justify-center w-5 h-5">
               <i class="devicon-python-plain colored text-[20px]"></i>
             </span>
             Python
-            <span class="text-xs text-slate-900/80 bg-slate-100/70 px-1.5 rounded-full ml-1">50%</span>
+            <span class="text-xs text-slate-300/90 bg-slate-800/80 px-1.5 rounded-full ml-1">50%</span>
           </button>
 
           <!-- Lua -->
@@ -545,7 +591,7 @@
         ในการแข่งขันครั้งนี้ได้ประสบการณ์หลายอย่างไม่ว่าจะเป็น การแก้ปัญหาเฉพาะหน้า และ การทำงานเป็นทีม ได้เรียนรู้ข้อผิดพลาดหลายอย่าง เช่น เรื่องน้ำหนักของหุ่นยนต์ การบังคับ
       </p>
       <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">C++</span>
+        <span class="tech-tag tag-cpp">C++</span>
         <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Arduino</span>
       </div>
       <div class="mt-3">
@@ -578,7 +624,7 @@
       </p>
       <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
         <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">CyberSecurity</span>
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Problem Solving</span>
+        <span class="tech-tag tag-ps">Problem Solving</span>
       </div>
       <div class="mt-3">
         <button
@@ -608,7 +654,7 @@
         คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล เป็นค่ายที่ทำให้ผมได้เรียนรู้ในการใช้ภาษา python เบื้องต้น และ สามารถนำไปปรับใช้ต่อได้ ไม่ว่าจะเป็น การสร้าง AI การนำไปปรับใช้ใน Data Science
       </p>
       <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Python</span>
+        <span class="tech-tag tag-python">Python</span>
       </div>
       <div class="mt-3">
         <button
@@ -635,9 +681,9 @@
         ได้เข้าร่วมแข่งขัน BangMod Hackathon ระดับประเทศรอบคัดเลือกครั้งที่1 ในการแข่งขันครั้งนี้ทำให้ผมได้ ประสบการณ์ในการเขียนภาษา C/C++ และยังได้ทักษะการวิเคราะห์ปัญหา การทำงานเป็นทีม
       </p>
       <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Problem Solvin</span>
+        <span class="tech-tag tag-ps">Problem Solving</span>
         <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Programming</span>
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">C/C++</span>
+        <span class="tech-tag tag-cpp">C/C++</span>
       </div>
       <div class="mt-3">
         <button
