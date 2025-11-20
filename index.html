@@ -55,6 +55,82 @@
       border: 1px solid rgba(148,163,184,0.18);
       backdrop-filter: blur(22px);
     }
+        .tech-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* Colors per language */
+    .tag-cpp {
+      background: rgba(0, 89, 156, 0.25);
+      border-color: rgba(0, 89, 156, 0.45);
+      box-shadow: 0 0 8px rgba(0, 89, 156, 0.35);
+    }
+
+    .tag-ee {
+      background: rgba(194, 0, 0, 0.25);
+      border-color: rgba(216, 11, 11, 0.25);
+      box-shadow: 0 0 8px rgba(246, 4, 4, 0.25);
+    }
+
+    .tag-me {
+      background: rgba(0, 21, 156, 0.25);
+      border-color: rgba(10, 35, 199, 0.25);
+      box-shadow: 0 0 8px rgba(5, 35, 231, 0.25);
+    }
+
+    .tag-python {
+      background: rgba(255, 212, 59, 0.25);
+      border-color: rgba(171, 156, 55, 0.45);
+      box-shadow: 0 0 8px rgba(217, 196, 61, 0.35);
+    }
+
+    .tag-html {
+      background: rgba(227, 79, 38, 0.25);
+      border-color: rgba(227, 79, 38, 0.45);
+      box-shadow: 0 0 8px rgba(227, 79, 38, 0.35);
+    }
+
+    .tag-css {
+      background: rgba(21, 114, 182, 0.25);
+      border-color: rgba(21, 114, 182, 0.45);
+      box-shadow: 0 0 8px rgba(21, 114, 182, 0.35);
+    }
+
+    .tag-lua {
+      background: rgba(37, 99, 235, 0.25);
+      border-color: rgba(37, 99, 235, 0.45);
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.35);
+    }
+
+    .tag-ps {
+      background: rgba(37, 235, 57, 0.25);
+      border-color: rgba(47, 235, 37, 0.45);
+      box-shadow: 0 0 8px rgba(37, 235, 47, 0.35);
+    }
+
+    .tag-pro {
+      background: rgba(46, 220, 188, 0.25);
+      border-color: rgba(35, 218, 185, 0.25);
+      box-shadow: 0 0 8px rgba(28, 237, 199, 0.25);
+    }
+
+    .tag-cy {
+      background: rgba(46, 191, 220, 0.25);
+      border-color: rgba(43, 195, 225, 0.25);
+      box-shadow: 0 0 8px rgba(34, 203, 237, 0.25);
+    }
+
+    .tag-pro {
+      background: rgba(46, 220, 188, 0.25);
+      border-color: rgba(35, 218, 185, 0.25);
+      box-shadow: 0 0 8px rgba(28, 237, 199, 0.25);
+    }
 
         /* ===== Certificate Modal Animation ===== */
     .modal-backdrop {
@@ -547,8 +623,8 @@
         ในการแข่งขันครั้งนี้ได้ประสบการณ์หลายอย่างไม่ว่าจะเป็น การแก้ปัญหาเฉพาะหน้า และ การทำงานเป็นทีม ได้เรียนรู้ข้อผิดพลาดหลายอย่าง เช่น เรื่องน้ำหนักของหุ่นยนต์ การบังคับ
       </p>
       <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">C++</span>
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Arduino</span>
+        <span class="tech-tag tag-me">Mechanical Skill</span>
+        <span class="tech-tag tag-ee">Electrical Skill</span>
       </div>
       <div class="mt-3">
         <button
@@ -568,8 +644,8 @@
     <article class="glass-card rounded-2xl p-6 shadow-xl flex flex-col gap-3">
       <div class="flex items-center justify-between gap-3">
         <h3 class="text-lg font-semibold">Thailand Cyber Top Talent 2025</h3>
-        <span class="text-[10px] px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700 text-slate-300">
-          Programming
+        <span class="tech-tag tag-cy">CyberSecurity</span>
+        <span class="tech-tag tag-ps">Problem Solving</span>
         </span>
       </div>
       <p class="text-xs text-slate-400">30 สิงหาคม 2025 • Online Contest</p>
@@ -610,7 +686,7 @@
         คณะเทคโนโลยีสารสนเทศและการสื่อสาร มหาวิทยาลัยมหิดล เป็นค่ายที่ทำให้ผมได้เรียนรู้ในการใช้ภาษา python เบื้องต้น และ สามารถนำไปปรับใช้ต่อได้ ไม่ว่าจะเป็น การสร้าง AI การนำไปปรับใช้ใน Data Science
       </p>
       <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Python</span>
+        <span class="tech-tag tag-python">Python</span>
       </div>
       <div class="mt-3">
         <button
@@ -637,9 +713,9 @@
         ได้เข้าร่วมแข่งขัน BangMod Hackathon ระดับประเทศรอบคัดเลือกครั้งที่1 ในการแข่งขันครั้งนี้ทำให้ผมได้ ประสบการณ์ในการเขียนภาษา C/C++ และยังได้ทักษะการวิเคราะห์ปัญหา การทำงานเป็นทีม
       </p>
       <div class="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-300">
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Problem Solvin</span>
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">Programming</span>
-        <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/80">C/C++</span>
+        <span class="tech-tag tag-ps">Problem Solving</span>
+        <span class="tech-tag tag-pro">Programming</span>
+        <span class="tech-tag tag-cpp">C/C++</span>
       </div>
       <div class="mt-3">
         <button
